@@ -185,7 +185,7 @@ class HomeScreen extends StatelessWidget {
               ),
             ),
 
-            // Featured Products Section
+            // Section Produits
             SliverToBoxAdapter(
               child: Container(
                 margin: EdgeInsets.fromLTRB(20, 30, 20, 0),
@@ -261,7 +261,7 @@ class HomeScreen extends StatelessWidget {
                   ),
                   _buildProductCard(
                     context,
-                    'Montre connectée oraimo',
+                    'Montre connectée',
                     '\ 20900 XAF',
                     'https://i.imgur.com/BoN9kdC.png',
                     5,
