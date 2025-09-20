@@ -279,7 +279,6 @@ class HomeScreen extends StatelessWidget {
         color: Color.fromARGB(255, 48, 75, 199),
         items: [
           Icon(Icons.home, size: 30, color: Colors.white),
-          Icon(Icons.favorite, size: 30, color: Colors.white),
           Icon(Icons.shopping_cart, size: 30, color: Colors.white),
           Icon(Icons.person, size: 30, color: Colors.white),
         ],
