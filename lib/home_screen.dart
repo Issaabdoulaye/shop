@@ -1,3 +1,4 @@
+import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:shop/product_screen.dart';
 
@@ -39,7 +40,7 @@ class HomeScreen extends StatelessWidget {
                               ),
                               SizedBox(height: 5),
                               Text(
-                                'Welcome to our store',
+                                'Bienvenue dans notre boutique',
                                 style: TextStyle(
                                   fontSize: 16,
                                   color: Color(0xFF718096),
@@ -90,7 +91,7 @@ class HomeScreen extends StatelessWidget {
               ),
             ),
 
-            // Search Bar
+            // Recherche Bar
             SliverToBoxAdapter(
               child: Container(
                 margin: EdgeInsets.fromLTRB(20, 20, 20, 30),
@@ -107,7 +108,7 @@ class HomeScreen extends StatelessWidget {
                 ),
                 child: TextField(
                   decoration: InputDecoration(
-                    hintText: 'Search for products',
+                    hintText: 'Recherchez des produits',
                     hintStyle: TextStyle(color: Color(0xFFa0aec0)),
                     border: InputBorder.none,
                     prefixIcon: Icon(Icons.search, color: Color(0xFFa0aec0)),
@@ -192,7 +193,7 @@ class HomeScreen extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      "Featured Products",
+                      "Produits en vedette",
                       style: TextStyle(
                         fontSize: 22,
                         fontWeight: FontWeight.w700,
@@ -200,7 +201,7 @@ class HomeScreen extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      "See All",
+                      "Voir tout",
                       style: TextStyle(
                         fontSize: 14,
                         color: Color.fromARGB(255, 19, 45, 159),
@@ -225,21 +226,21 @@ class HomeScreen extends StatelessWidget {
                 delegate: SliverChildListDelegate([
                   _buildProductCard(
                     context,
-                    'Premium Headphones',
+                    'Montre Rolex',
                     '\ 5500 XAF',
                     'https://i.imgur.com/BoN9kdC.png',
                     4.5,
                   ),
                   _buildProductCard(
                     context,
-                    'Premium Headphones',
+                    'wifi',
                     '\ 10500 XAF',
                     'https://i.imgur.com/BoN9kdC.png',
                     4.6,
                   ),
                   _buildProductCard(
                     context,
-                    'Premium Headphones',
+                    'chemise homme',
                     '\ 5999 XAF',
                     'https://i.imgur.com/BoN9kdC.png',
                     4.2,
@@ -253,14 +254,14 @@ class HomeScreen extends StatelessWidget {
                   ),
                   _buildProductCard(
                     context,
-                    'Premium Headphones',
+                    'ecouteur sans fil',
                     '\ 3550 XAF',
                     'https://i.imgur.com/BoN9kdC.png',
                     4.8,
                   ),
                   _buildProductCard(
                     context,
-                    'Premium Headphones',
+                    'Montre connectée oraimo',
                     '\ 20900 XAF',
                     'https://i.imgur.com/BoN9kdC.png',
                     5,
@@ -270,6 +271,18 @@ class HomeScreen extends StatelessWidget {
             ),
           ],
         ),
+      ),
+      bottomNavigationBar: CurvedNavigationBar(
+        backgroundColor: Colors.transparent,
+        onTap: (index) {},
+        height: 60,
+        color: Color.fromARGB(255, 48, 75, 199),
+        items: [
+          Icon(Icons.home, size: 30, color: Colors.white),
+          Icon(Icons.favorite, size: 30, color: Colors.white),
+          Icon(Icons.shopping_cart, size: 30, color: Colors.white),
+          Icon(Icons.person, size: 30, color: Colors.white),
+        ],
       ),
     );
   }
