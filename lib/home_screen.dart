@@ -63,11 +63,17 @@ class HomeScreen extends StatelessWidget {
                                   ),
                                   borderRadius: BorderRadius.circular(15),
                                 ),
+
+                                // child: InkWell(
+                                //   onTap: () {
+                                //     Navigator.push(context, "Notifications");
+                                //   },
                                 child: Icon(
                                   Icons.notifications,
                                   size: 24,
                                   color: Colors.white,
                                 ),
+                                // ),
                               ),
                               Positioned(
                                 right: 8,

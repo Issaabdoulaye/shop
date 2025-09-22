@@ -13,10 +13,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Market Store',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-        fontFamily: 'SP Pro Display',
-      ),
+      theme: ThemeData(primarySwatch: Colors.blue, fontFamily: 'Pro Display'),
       home: SplashScreen(),
     );
   }
@@ -34,7 +31,7 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     //TODO: implement initState
     super.initState();
-    Future.delayed(Duration(milliseconds: 5), () {
+    Future.delayed(Duration(milliseconds: 10), () {
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(builder: (context) => const HomeScreen()),
