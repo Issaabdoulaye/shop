@@ -1,6 +1,11 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:shop/CartAppBar.dart';
+import 'package:shop/panier.dart';
 import 'package:shop/product_screen.dart';
+import 'package:shop/profil.dart';
+import 'package:shop/database/database.dart';
+import 'package:shop/test.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -48,6 +53,7 @@ class HomeScreen extends StatelessWidget {
                               ),
                             ],
                           ),
+
                           // Notification Icon
                           Stack(
                             children: [
@@ -63,17 +69,21 @@ class HomeScreen extends StatelessWidget {
                                   ),
                                   borderRadius: BorderRadius.circular(15),
                                 ),
-
-                                // child: InkWell(
-                                //   onTap: () {
-                                //     Navigator.push(context, "Notifications");
-                                //   },
-                                child: Icon(
-                                  Icons.notifications,
-                                  size: 24,
-                                  color: Colors.white,
+                                child: InkWell(
+                                  onTap: () {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) => CartAppBar(),
+                                      ),
+                                    );
+                                  },
+                                  child: Icon(
+                                    Icons.notifications,
+                                    size: 24,
+                                    color: Colors.white,
+                                  ),
                                 ),
-                                // ),
                               ),
                               Positioned(
                                 right: 8,
@@ -230,48 +240,16 @@ class HomeScreen extends StatelessWidget {
                   mainAxisSpacing: 16,
                 ),
                 delegate: SliverChildListDelegate([
-                  _buildProductCard(
-                    context,
-                    'Montre Rolex',
-                    '\ 5500 XAF',
-                    'https://i.imgur.com/BoN9kdC.png',
-                    4.5,
-                  ),
-                  _buildProductCard(
-                    context,
-                    'wifi',
-                    '\ 10500 XAF',
-                    'https://i.imgur.com/BoN9kdC.png',
-                    4.6,
-                  ),
-                  _buildProductCard(
-                    context,
-                    'chemise homme',
-                    '\ 5999 XAF',
-                    'https://i.imgur.com/BoN9kdC.png',
-                    4.2,
-                  ),
-                  _buildProductCard(
-                    context,
-                    'Premium Headphones',
-                    '\ 2959 XAF',
-                    'https://i.imgur.com/BoN9kdC.png',
-                    4.8,
-                  ),
-                  _buildProductCard(
-                    context,
-                    'ecouteur sans fil',
-                    '\ 3550 XAF',
-                    'https://i.imgur.com/BoN9kdC.png',
-                    4.8,
-                  ),
-                  _buildProductCard(
-                    context,
-                    'Montre connectée',
-                    '\ 20900 XAF',
-                    'https://i.imgur.com/BoN9kdC.png',
-                    5,
-                  ),
+                  for (var article in articles)
+                    _buildProductCard(
+                      context,
+                      article.nom,
+                      '\ ${article.prix} XAF',
+                      article.photoUrl,
+                      article.rating,
+                      article.description,
+                      article.availableColors,
+                    ),
                 ]),
               ),
             ),
@@ -280,7 +258,20 @@ class HomeScreen extends StatelessWidget {
       ),
       bottomNavigationBar: CurvedNavigationBar(
         backgroundColor: Colors.transparent,
-        onTap: (index) {},
+        onTap: (index) {
+          Widget page;
+          if (index == 0) {
+            page = HomeScreen();
+          } else if (index == 1) {
+            page = Panier();
+          } else {
+            page = Profil();
+          }
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => page),
+          );
+        },
         height: 60,
         color: Color.fromARGB(255, 48, 75, 199),
         items: [
@@ -308,7 +299,18 @@ class HomeScreen extends StatelessWidget {
               borderRadius: BorderRadius.circular(18),
               border: Border.all(color: color.withOpacity(0.02)),
             ),
-            child: Icon(icon, color: color, size: 28),
+            child: InkWell(
+              onTap: () {
+                // Handle category tap if needed
+                // Navigator.push(
+                //   context,
+                //   MaterialPageRoute(
+                //     builder: (context) => Test(),
+                //   ),
+                // );
+              },
+              child: Icon(icon, color: color, size: 28),
+            ),
           ),
           SizedBox(height: 8),
           Text(
@@ -331,6 +333,8 @@ class HomeScreen extends StatelessWidget {
     String price,
     String imageUrl,
     double rating,
+    String description,
+    List<String>? availableColors,
   ) {
     return GestureDetector(
       onTap: () {
@@ -342,6 +346,8 @@ class HomeScreen extends StatelessWidget {
               price: price,
               imageUrl: imageUrl,
               rating: rating,
+              description: description,
+              availableColors: availableColors,
             ),
           ),
         );

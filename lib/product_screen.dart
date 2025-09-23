@@ -5,13 +5,17 @@ class ProductScreen extends StatelessWidget {
   final String price;
   final double rating;
   final String imageUrl;
+  final String description;
+  final List<String>? availableColors;
 
   const ProductScreen({
     super.key,
     required this.name,
     required this.price,
+    required this.description,
     required this.rating,
     required this.imageUrl,
+    required this.availableColors,
   });
 
   @override
@@ -202,11 +206,32 @@ class ProductScreen extends StatelessWidget {
                   SizedBox(height: 12),
                   Row(
                     children: [
-                      _buildColorOption(Colors.black, true),
-                      _buildColorOption(Colors.blue, false),
-                      _buildColorOption(Colors.amber, false),
-                      _buildColorOption(Colors.redAccent, true),
-                      _buildColorOption(Colors.green, false),
+                      for (var colorName in availableColors ?? [])
+                        _buildColorOption(
+                          colorName.toLowerCase() == 'black'
+                              ? Colors.black
+                              : colorName.toLowerCase() == 'white'
+                              ? Colors.white
+                              : colorName.toLowerCase() == 'blue'
+                              ? Colors.blue
+                              : colorName.toLowerCase() == 'pink'
+                              ? Colors.pink
+                              : colorName.toLowerCase() == 'green'
+                              ? Colors.green
+                              : colorName.toLowerCase() == 'redaccent'
+                              ? Colors.redAccent
+                              : colorName.toLowerCase() == 'amber'
+                              ? Colors.amber
+                              : colorName.toLowerCase() == 'gold'
+                              ? Colors.yellow
+                              : Colors.grey,
+                          false,
+                        ),
+                      // _buildColorOption(Colors.black, true),
+                      // _buildColorOption(Colors.blue, false),
+                      // _buildColorOption(Colors.amber, false),
+                      // _buildColorOption(Colors.redAccent, true),
+                      // _buildColorOption(Colors.green, false),
                     ],
                   ),
                   SizedBox(height: 24),
@@ -220,7 +245,7 @@ class ProductScreen extends StatelessWidget {
                   ),
                   SizedBox(height: 12),
                   Text(
-                    'Experience premium sound quality with these professional headphones. Featuring noise-cancellation technology, comfortable ear cups, and a sleek design, they are perfect for music lovers and professionals alike.',
+                    description,
                     style: TextStyle(fontSize: 16, color: Color(0xFF718096)),
                   ),
                   SizedBox(height: 32),
@@ -284,8 +309,8 @@ class ProductScreen extends StatelessWidget {
         color: color,
         borderRadius: BorderRadius.circular(12),
         border: Border.all(
-          color: isSelected ? Color(0xFF667EEA) : Colors.transparent,
-          width: 3,
+          color: isSelected ? Color(0xFF667EEA) : Colors.black,
+          width: 1,
         ),
       ),
       child: isSelected
